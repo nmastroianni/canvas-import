@@ -1,265 +1,151 @@
-// Lesson1.tsx
-
-import loon from '@/assets/images/loon.jpg'
 import ContainerBlock from '@/components/ContainerBlock'
-import LabeledImageBlock from '@/components/LabeledImageBlock'
-import NextLessonButton from '@/components/NextLessonButton'
-import TextAsideBlock from '@/components/TextAsideBlock'
-import LessonBlock from '@/components/LessonBlock'
-import React from 'react'
 import { useCourse } from '@/components/CourseProvider'
-import NextSectionButton from '@/components/NextSectionButton'
-import { AnimatePresence } from 'motion/react'
-import CallOutBlock from '@/components/CallOutBlock'
-import CheckForUnderstanding from '@/components/quiz/CheckForUnderstanding'
-import TrueOrFalseQuestion from '@/components/quiz/TrueOrFalseQuestionBlock'
-import {
-  MultipleChoiceQuestions,
-  MultipleSelectQuestions,
-  TrueOrFalseQuestions,
-} from '@/lib/questions'
-import WhileInView from '@/components/WhileInView'
-import type { Hotspot } from '@/types/global'
+import LabeledImageBlock from '@/components/LabeledImageBlock'
+import LessonBlock from '@/components/LessonBlock'
 import LessonSectionBlock from '@/components/LessonSectionBlock'
-import MultipleChoiceQuestionBlock from '@/components/quiz/MultipleChoiceQuestionBlock'
-import MultipleSelectQuestionBlock from '@/components/quiz/MultipleSelectQuestionBlock'
+import NextLessonButton from '@/components/NextLessonButton'
+import { AnimatePresence } from 'motion/react'
+import { FC } from 'react'
+import { Hotspot } from '@/types/global'
+import WhileInView from '@/components/WhileInView'
+import CheckForUnderstanding from '@/components/quiz/CheckForUnderstanding'
+import TrueOrFalseQuestionBlock from '@/components/quiz/TrueOrFalseQuestionBlock'
+import NextSectionButton from '@/components/NextSectionButton'
+// Assets
+import dashboard from '@/assets/images/dashboard.jpg'
+import homepageButtons from '@/assets/images/homepage-buttons.jpg'
+import settingsButtons from '@/assets/images/settings-buttons.jpg'
 
-const Lesson1: React.FC = () => {
+const Lesson1: FC = () => {
   const { currentSection } = useCourse()
-  // set a const for the total number of sections in this lesson
-  const sectionCount = 3
-  const hotpsots: Array<Hotspot> = [
+  const sectionCount = 2
+  const dashboardHotspots: Hotspot[] = [
     {
-      top: '25%',
-      left: '63%',
-      size: 40,
       content: (
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias,
-          possimus aut. Voluptatem quam aliquid corporis assumenda provident
-          maiores animi eos fuga amet eligendi hic, optio quo dolore quia vitae
-          quae.
+          This is the Canvas dashboard. It currently shows two published
+          courses. Your course will likely be found below this in the
+          unpublished section.
         </p>
       ),
+      left: '32%',
+      top: '10%',
+      size: 40,
+      color: 'darkmagenta',
     },
     {
-      top: '56%',
-      left: '19%',
-      color: 'aqua',
-      content: (
-        <p>
-          This is water falling from the beak of a common loon. High-speed
-          photography at its finest.
-        </p>
-      ),
+      content: <p>This is a course card. Clicking it will enter the course.</p>,
+      left: '31%',
+      top: '62%',
+      color: 'darkmagenta',
     },
   ]
-  const [question1] = TrueOrFalseQuestions.filter(
-    question => question.id === 'lesson1question1',
-  )
-  const [question2] = MultipleChoiceQuestions.filter(
-    question => question.id === 'lesson1question2',
-  )
-  const [question3] = MultipleSelectQuestions.filter(
-    question => question.id === 'lesson1question3',
-  )
+  const buttonHotspots: Array<Hotspot> = [
+    {
+      content: <p>Convenient set of buttons available only on the homepage</p>,
+      left: '75%',
+      top: '9%',
+      color: 'rebeccapurple',
+    },
+    {
+      content: <p>This is the correct import button to click. </p>,
+      left: '75%',
+      top: '24%',
+      color: 'blue',
+    },
+    {
+      content: (
+        <p>
+          Do not click this import button. It will not allow you to import your
+          previous course content.
+        </p>
+      ),
+      left: '75%',
+      top: '35%',
+      color: 'crimson',
+    },
+  ]
   return (
     <LessonBlock>
+      <ContainerBlock width="prose">
+        <h1>Where to Begin...</h1>
+      </ContainerBlock>
       <AnimatePresence mode="sync">
         {currentSection >= 0 && (
-          <LessonSectionBlock id="section1" key={1}>
+          <LessonSectionBlock id="lesson1section1" className="scroll-mt-16">
             <ContainerBlock width="prose">
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit
-                fugit expedita iste fuga mollitia ex at obcaecati culpa omnis
-                totam pariatur perspiciatis repudiandae, ducimus architecto
-                voluptates officia neque similique iure?
+                From your Canvas dashboard, click into your course skeleton.
+                This is the course that will receive the content from a previous
+                course. (Click the pins in the labeled images below)
               </p>
+              <LabeledImageBlock
+                imageUrl={dashboard}
+                imageAlt="Canvas dashboard showing two published courses of Student Success Seminar"
+                hotspots={dashboardHotspots}
+              />
               <p>
-                Fugiat animi, corrupti at inventore nisi velit, tempore
-                dignissimos, sit maxime pariatur illum! Maxime, molestiae
-                maiores expedita officia tempore at neque. Consequuntur
-                voluptate corrupti quas odio ut assumenda nemo saepe?
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Debitis, quo error unde autem eum deserunt molestias? Debitis
-                numquam corporis sint illo, accusamus fugit consequuntur! Libero
-                voluptatem ullam repudiandae excepturi corporis.
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Exercitationem dolorum, porro labore ea, cum facilis non, animi
-                expedita sapiente dicta deleniti unde eaque similique ad
-                reiciendis aliquid totam asperiores vitae!
+                This will land you on the course homepage. This course homepage
+                is the fastest and simplest way to access the course import
+                tool.
               </p>
             </ContainerBlock>
-            <ContainerBlock width="xl">
-              <TextAsideBlock
-                imageUrl={loon}
-                altText="A common loon with water dropping off its bill."
-              >
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Laudantium in ab ex, deserunt earum eveniet corporis quis
-                  mollitia! Distinctio ea recusandae consequuntur assumenda,
-                  temporibus delectus alias doloremque! Quae, autem fugit.
-                </p>
-                <p>
-                  Fugit sunt neque odit sint vel quis. Incidunt excepturi magnam
-                  ipsam molestias et cupiditate, officiis consequatur reiciendis
-                  minus accusamus voluptatibus sequi sapiente, voluptate beatae
-                  quidem tempore maxime. Laboriosam, ut reprehenderit!
-                </p>
-                <p>
-                  Each course is built with the goal of delivering high-quality,
-                  student-centered learning that fosters academic success and
-                  supports diverse learning needs.
-                </p>
-              </TextAsideBlock>
-              <WhileInView direction="up" margin="-30%">
-                <LabeledImageBlock imageUrl={loon} hotspots={hotpsots} />
+            <ContainerBlock width="prose">
+              <WhileInView direction="down" margin="-30%">
+                <LabeledImageBlock
+                  imageUrl={homepageButtons}
+                  imageAlt="Homepage buttons"
+                  hotspots={buttonHotspots}
+                />
               </WhileInView>
             </ContainerBlock>
-            <ContainerBlock width="prose" className="pt-4">
-              <WhileInView direction="up">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Eligendi rem nesciunt, pariatur consequatur cum reiciendis a
-                  praesentium corrupti molestias consequuntur! Temporibus,
-                  repudiandae quae rerum nisi obcaecati nostrum. Hic, ex
-                  mollitia.
-                </p>
-              </WhileInView>
-            </ContainerBlock>
-            <ContainerBlock width="md">
-              <CheckForUnderstanding heading="Check for Understanding">
-                <TrueOrFalseQuestion question={question1} />
-              </CheckForUnderstanding>
-              {currentSection === 0 && <NextSectionButton />}
-            </ContainerBlock>
+            <CheckForUnderstanding heading="Checkpoint">
+              <TrueOrFalseQuestionBlock
+                question={{
+                  type: 'TrueOrFalse',
+                  id: 'l1q1',
+                  question:
+                    'The correct import button to click is the "Import from Commons" button.',
+                  answer: false,
+                }}
+              />
+            </CheckForUnderstanding>
+            {currentSection === 0 && <NextSectionButton contingent />}
           </LessonSectionBlock>
         )}
         {currentSection >= 1 && (
-          <LessonSectionBlock id="section2" key={2}>
+          <LessonSectionBlock id="lesson1section2">
             <ContainerBlock width="prose">
-              <CallOutBlock>
-                <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Aliquid aspernatur blanditiis possimus eligendi? Error, qui
-                  explicabo labore voluptatum esse quo eos veniam maiores
-                  consequuntur nulla, aliquam accusantium? Excepturi, nesciunt
-                  culpa!
-                </p>
-              </CallOutBlock>
+              <h2>An Alternate Method</h2>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto
-                illo quis reprehenderit facere. Veritatis, necessitatibus! Magni
-                animi maxime cupiditate blanditiis dignissimos reprehenderit
-                nobis, optio magnam alias? Amet tempore in omnis?
+                If you're not on the homepage, and perhaps you're in the course
+                settings, this is the other location from which you can access
+                the course import tool.
               </p>
-              <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga
-                nihil ipsa rem natus voluptate, tenetur non porro, magnam ipsum
-                quae dolore laborum suscipit earum vero ad nulla aspernatur hic?
-                Dolorum!
-              </p>
-            </ContainerBlock>
-            <ContainerBlock width="xl">
-              <TextAsideBlock imageUrl={loon} altText="">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Obcaecati natus ducimus itaque veniam consequuntur ipsum
-                  dolore repudiandae officiis quasi molestiae, maiores at vero
-                  quia voluptate sapiente optio consequatur, ipsa enim.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Voluptatum, blanditiis necessitatibus modi soluta atque maxime
-                  deleniti est, accusamus aperiam rerum vero, quibusdam illum
-                  corporis! Eius voluptatem delectus perferendis voluptatum
-                  veniam!
-                </p>
-              </TextAsideBlock>
-              <CheckForUnderstanding>
-                <MultipleChoiceQuestionBlock question={question2} />
-              </CheckForUnderstanding>
-              {currentSection === 1 && <NextSectionButton contingent />}
-            </ContainerBlock>
-          </LessonSectionBlock>
-        )}
-        {currentSection >= 2 && (
-          <LessonSectionBlock id="section3" key={3}>
-            <ContainerBlock width="prose">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam
-                rerum omnis quia nulla totam, dicta iste fuga earum? Nam minus
-                commodi odio repellat labore cumque molestias rerum. Reiciendis,
-                excepturi odio.
-              </p>
-              <p>
-                Et natus earum possimus a magnam aut magni saepe nisi, nobis
-                praesentium eius totam qui amet harum est officia rerum! Rem
-                alias aspernatur tempore quibusdam ipsam quidem provident fugit
-                sunt!
-              </p>
-              <p>
-                Nostrum tempora error corporis, voluptatem ut quam ad, delectus
-                facilis repudiandae ea cum deserunt ipsa dolore libero accusamus
-                ullam nulla at aperiam laboriosam! Iste eos rem voluptatem
-                aliquam eveniet facilis!
-              </p>
-              <p>
-                Ad, voluptas eaque aperiam debitis cum modi, architecto corrupti
-                earum facere fugiat libero temporibus incidunt. Eius at animi
-                modi doloribus cupiditate alias beatae velit quae. Perferendis
-                nesciunt doloremque minima quis?
-              </p>
-              <p>
-                Tempore doloremque accusantium ullam dolore commodi facilis vel,
-                obcaecati officia saepe officiis, recusandae fugit quidem quae
-                nobis harum quam iure exercitationem, distinctio animi aperiam.
-                Qui sit rerum placeat consequatur harum.
-              </p>
-              <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Modi
-                fugiat corporis exercitationem in quis facere, adipisci
-                doloribus animi dolorum voluptates tempora aut qui mollitia at.
-                Optio delectus voluptatem nostrum debitis.
-              </p>
-              <p>
-                Praesentium, modi et aperiam quia nostrum eum laborum, nesciunt
-                quo sapiente labore enim quae maiores mollitia iusto repellat!
-                Earum necessitatibus quo neque iusto. Aut delectus debitis ab,
-                quod quam consequatur!
-              </p>
-              <p>
-                Beatae nulla dolorum repellendus totam animi laboriosam,
-                inventore consectetur, impedit libero odio nam incidunt debitis
-                necessitatibus maxime exercitationem. Assumenda facere ipsa
-                deleniti minus fugit nostrum magni cum obcaecati. Deleniti, ex?
-              </p>
-              <p>
-                Pariatur itaque veniam totam voluptatum ad magnam aperiam beatae
-                iusto temporibus aliquam! Sint officia laudantium aut qui illum
-                reprehenderit maxime iste, porro dicta blanditiis, error soluta
-                sed accusantium voluptates sunt.
-              </p>
-              <p>
-                Excepturi recusandae nesciunt quam sapiente at, illo libero
-                cumque vitae doloremque quo consectetur eveniet est placeat
-                numquam eius neque amet blanditiis voluptate quas molestias,
-                quidem incidunt commodi provident labore! Optio.
-              </p>
-              <CheckForUnderstanding>
-                <MultipleSelectQuestionBlock question={question3} />
-              </CheckForUnderstanding>
+              <WhileInView direction="down" margin="-30%">
+                <LabeledImageBlock
+                  imageUrl={settingsButtons}
+                  imageAlt="Buttons available on the Canvas course settings page"
+                  hotspots={[
+                    {
+                      content: (
+                        <p>
+                          This is the correct button to click to begin setting
+                          up the import.
+                        </p>
+                      ),
+                      left: '78%',
+                      top: '56%',
+                      color: 'rebeccapurple',
+                    },
+                  ]}
+                />
+              </WhileInView>
             </ContainerBlock>
           </LessonSectionBlock>
         )}
       </AnimatePresence>
-
-      {currentSection === sectionCount - 1 && <NextLessonButton contingent />}
+      {currentSection === sectionCount - 1 && <NextLessonButton />}
     </LessonBlock>
   )
 }

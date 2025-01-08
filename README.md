@@ -17,7 +17,7 @@ issues.
 There are two main places to begin the course import process. This lesson will
 show you those places.
 
-### How to Set Up an Import
+### How to Configure an Import
 
 In this lesson, you will see how to use the import page and its settings to
 arrange for a proper course import.

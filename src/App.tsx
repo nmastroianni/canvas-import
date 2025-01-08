@@ -1,8 +1,6 @@
 import { AnimatePresence } from 'motion/react'
 import { useCourse } from './components/CourseProvider'
 import CourseOverview from './lessons/CourseOverview'
-import Lesson1 from './lessons/Lesson1'
-import Lesson2 from './lessons/Lesson2'
 import { JSX } from 'react'
 import Container from './components/ContainerBlock'
 import { Button } from './components/ui/button'
@@ -16,6 +14,8 @@ import {
 import { ThemeToggle } from './components/ThemeToggle'
 import Headroom from 'react-headroom'
 import NavigationMenu from './components/NavigationMenu'
+import Lesson1 from './lessons/Lesson1'
+import Lesson2 from './lessons/Lesson2'
 
 function App(): JSX.Element {
   const { currentLesson, setCurrentLesson } = useCourse()
@@ -23,11 +23,15 @@ function App(): JSX.Element {
   const lessons: Array<Lesson> = [
     {
       id: 1,
-      title: 'Lesson 1 Title',
+      title: 'Where to Begin',
     },
     {
       id: 2,
-      title: 'Lesson 2 Title',
+      title: 'How to Set Up an Import',
+    },
+    {
+      id: 3,
+      title: 'What to Do After the Import is Complete',
     },
   ]
 
@@ -76,8 +80,8 @@ function App(): JSX.Element {
       <main className="min-h-screen scroll-smooth bg-slate-200 text-slate-950 dark:bg-slate-900 dark:text-slate-50">
         <AnimatePresence mode="wait">
           {currentLesson === 0 && <CourseOverview key={1} />}
-          {currentLesson === 1 && <Lesson1 key={2} />}
-          {currentLesson === 2 && <Lesson2 key={3} />}
+          {currentLesson === 1 && <Lesson1 />}
+          {currentLesson === 2 && <Lesson2 />}
           {currentLesson === 3 && (
             <AssessmentBlock key={4} questions={questions} passingScore={80}>
               <p>

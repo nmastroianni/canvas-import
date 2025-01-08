@@ -54,7 +54,7 @@ const LabeledImageBlock: React.FC<LabledImageProps> = ({
                 <Popover>
                   <PopoverTrigger
                     className={cn(
-                      `absolute animate-pulse rounded-full border p-2 text-4xl focus:outline-none focus:ring-4 focus-visible:ring-ring`,
+                      `absolute animate-pulse rounded-full border-2 p-2 text-4xl focus:outline-none focus:ring-4 focus-visible:ring-ring`,
                     )}
                     style={{
                       top: hotspot.top,

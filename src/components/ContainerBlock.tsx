@@ -24,7 +24,7 @@ const ContainerBlock: React.FC<ContainerProps> = ({
         className,
       )}
     >
-      <span className="w-full" />
+      {/* <span className="w-full" /> */}
       <div
         className={cn('mx-auto p-4 lg:p-0', {
           'prose dark:prose-invert lg:prose-lg xl:prose-xl 2xl:prose-2xl':
