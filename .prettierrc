@@ -1,0 +1,10 @@
+{
+  "tailwindConfig": "./tailwind.config.ts",
+  "arrowParens": "avoid",
+  "semi": false,
+  "singleQuote": true,
+  "jsxSingleQuote": false,
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "printWidth": 80,
+  "proseWrap": "always"
+}
