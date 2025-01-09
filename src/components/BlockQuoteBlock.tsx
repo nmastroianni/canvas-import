@@ -13,10 +13,7 @@ const BlockQuoteBlock: FC<BlockQuoteProps> = ({
   citation,
 }) => {
   return (
-    <Container
-      width="md"
-      className="my-4 border-l-2 border-r-2 border-slate-300 dark:border-slate-200 lg:my-8"
-    >
+    <Container width="md" className="my-4 lg:my-8">
       <blockquote
         className="p-4 font-serif text-2xl font-semibold lg:p-8 lg:text-3xl"
         style={{ lineHeight: '2.6rem' }}

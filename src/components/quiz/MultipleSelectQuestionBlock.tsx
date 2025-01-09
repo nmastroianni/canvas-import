@@ -48,6 +48,7 @@ const MultipleSelectQuestionBlock: FC<MultipleSelectQuestionProps> = ({
     if (feedbackRef.current) {
       feedbackRef.current.focus()
     }
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
   }, [correct])
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -103,7 +104,7 @@ const MultipleSelectQuestionBlock: FC<MultipleSelectQuestionProps> = ({
               return (
                 <label
                   key={option}
-                  htmlFor={`ms-option-${index}`}
+                  htmlFor={`ms-option-${question.id}-${index}`}
                   className={cn(
                     'flex cursor-pointer items-center space-x-4 rounded p-4 transition-colors duration-300 ease-in',
                     {
@@ -113,7 +114,7 @@ const MultipleSelectQuestionBlock: FC<MultipleSelectQuestionProps> = ({
                   )}
                 >
                   <input
-                    id={`ms-option-${index}`}
+                    id={`ms-option-${question.id}-${index}`}
                     type="checkbox"
                     name={question.id}
                     value={index.toString()}

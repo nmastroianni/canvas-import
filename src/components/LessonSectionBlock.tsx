@@ -6,6 +6,7 @@ interface LessonSubSectionProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode
   id: string
   className?: string
+  key: number
 }
 const LessonSectionBlock: React.FC<LessonSubSectionProps> = ({
   children,

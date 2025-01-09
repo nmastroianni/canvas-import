@@ -47,6 +47,7 @@ const MultipleChoiceQuestionBlock: FC<MultipleChoiceQuestionProps> = ({
     if (feedbackRef.current) {
       feedbackRef.current.focus()
     }
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
   }, [correct])
 
   // Function to handle input changes
@@ -98,7 +99,7 @@ const MultipleChoiceQuestionBlock: FC<MultipleChoiceQuestionProps> = ({
               return (
                 <label
                   key={option}
-                  htmlFor={`mc-option-${index}`}
+                  htmlFor={`mc-option-${question.id}-${index}`}
                   className={cn(
                     'flex cursor-pointer items-center space-x-4 rounded p-4 transition-colors duration-300 ease-in',
                     {
@@ -109,7 +110,7 @@ const MultipleChoiceQuestionBlock: FC<MultipleChoiceQuestionProps> = ({
                 >
                   <input
                     tabIndex={0}
-                    id={`mc-option-${index}`}
+                    id={`mc-option-${question.id}-${index}`}
                     type="radio"
                     name={question.id}
                     value={option}

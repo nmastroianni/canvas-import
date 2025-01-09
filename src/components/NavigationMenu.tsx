@@ -21,7 +21,6 @@ const NavigationMenu: FC<NavigationMenuProps> = ({ lessons }) => {
       setHighestLesson(currentLesson)
     }
   }, [currentLesson, highestLesson, setHighestLesson])
-  console.log('current lesson is ', currentLesson)
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

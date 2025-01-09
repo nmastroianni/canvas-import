@@ -31,7 +31,7 @@ const CourseOverview: React.FC = () => {
           </Button>
         </div>
         <ContainerBlock width="prose">
-          <h2>Save Time & Effort. Keep it Clean.</h2>
+          <h2>Save Time & Effort With Your Import.</h2>
           <p>
             Preparing your course for publication is an exciting time. Thanks to
             the Import tool in Canvas, you can save time and effort. With a

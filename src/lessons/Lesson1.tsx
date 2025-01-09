@@ -72,7 +72,11 @@ const Lesson1: FC = () => {
       </ContainerBlock>
       <AnimatePresence mode="sync">
         {currentSection >= 0 && (
-          <LessonSectionBlock id="lesson1section1" className="scroll-mt-16">
+          <LessonSectionBlock
+            id="lesson1section1"
+            className="scroll-mt-16"
+            key={1}
+          >
             <ContainerBlock width="prose">
               <p>
                 From your Canvas dashboard, click into your course skeleton.
@@ -114,7 +118,7 @@ const Lesson1: FC = () => {
           </LessonSectionBlock>
         )}
         {currentSection >= 1 && (
-          <LessonSectionBlock id="lesson1section2">
+          <LessonSectionBlock id="lesson1section2" key={2}>
             <ContainerBlock width="prose">
               <h2>An Alternate Method</h2>
               <p>
@@ -145,7 +149,9 @@ const Lesson1: FC = () => {
           </LessonSectionBlock>
         )}
       </AnimatePresence>
-      {currentSection === sectionCount - 1 && <NextLessonButton />}
+      {currentSection === sectionCount - 1 && (
+        <NextLessonButton text="Continue to the next step" />
+      )}
     </LessonBlock>
   )
 }

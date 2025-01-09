@@ -50,6 +50,7 @@ const TrueOrFalseQuestionBlock: FC<TrueOrFalseQuestionProps> = ({
 
   useEffect(() => {
     if (feedbackRef.current) feedbackRef.current.focus()
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
   }, [correct])
 
   // Function to handle input changes
@@ -92,7 +93,7 @@ const TrueOrFalseQuestionBlock: FC<TrueOrFalseQuestionProps> = ({
           </legend>
           <div className="grid gap-y-4 font-semibold">
             <label
-              htmlFor="choice-true"
+              htmlFor={`choice-true-${question.id}`}
               className={cn(
                 'flex cursor-pointer items-center rounded p-4 transition-colors duration-300 ease-in',
                 {
@@ -102,12 +103,12 @@ const TrueOrFalseQuestionBlock: FC<TrueOrFalseQuestionProps> = ({
               )}
             >
               <input
-                id="choice-true"
+                id={`choice-true-${question.id}`}
                 type="radio"
                 value="true"
                 onChange={handleInputChange}
                 className="form-radio"
-                name="tf"
+                name={question.id}
                 disabled={submitted}
                 checked={formData.studentAnswer === 'true'}
               />
@@ -115,7 +116,7 @@ const TrueOrFalseQuestionBlock: FC<TrueOrFalseQuestionProps> = ({
               <span className="pl-4 lg:pl-6">True</span>
             </label>
             <label
-              htmlFor="choice-false"
+              htmlFor={`choice-false-${question.id}`}
               className={cn(
                 'flex cursor-pointer items-center rounded p-4 transition-colors duration-300 ease-in',
                 {
@@ -125,11 +126,11 @@ const TrueOrFalseQuestionBlock: FC<TrueOrFalseQuestionProps> = ({
               )}
             >
               <input
-                id="choice-false"
+                id={`choice-false-${question.id}`}
                 type="radio"
                 value="false"
                 onChange={handleInputChange}
-                name="tf"
+                name={question.id}
                 disabled={submitted}
                 checked={formData.studentAnswer === 'false'}
               />
