@@ -14,7 +14,7 @@ interface NavigationMenuProps {
 }
 
 const NavigationMenu: FC<NavigationMenuProps> = ({ lessons }) => {
-  const { currentLesson, setCurrentLesson } = useCourse()
+  const { currentLesson, setCurrentLesson, setCurrentSection } = useCourse()
   const [highestLesson, setHighestLesson] = useState(currentLesson)
   useEffect(() => {
     if (currentLesson > highestLesson) {
@@ -32,7 +32,10 @@ const NavigationMenu: FC<NavigationMenuProps> = ({ lessons }) => {
         {currentLesson > 0 && (
           <DropdownMenuItem
             className="flex dark:hover:bg-slate-700"
-            onClick={() => setCurrentLesson(0)}
+            onClick={() => {
+              setCurrentLesson(0)
+              setCurrentSection(0)
+            }}
           >
             <span>
               <Home className="h-[1rem] w-[1rem]" />
