@@ -11,9 +11,11 @@ import NavigationMenu from './components/NavigationMenu'
 import Lesson1 from './lessons/Lesson1'
 import Lesson2 from './lessons/Lesson2'
 import Lesson3 from './lessons/Lesson3'
+import AssessmentBlock from './components/quiz/AssessmentBlock'
+import ContainerBlock from './components/ContainerBlock'
 
 function App(): JSX.Element {
-  const { currentLesson, setCurrentLesson } = useCourse()
+  const { coursePassed, currentLesson, setCurrentLesson } = useCourse()
 
   const lessons: Array<Lesson> = [
     {
@@ -27,6 +29,10 @@ function App(): JSX.Element {
     {
       id: 3,
       title: 'What to Do After the Import is Complete',
+    },
+    {
+      id: 4,
+      title: 'Final Acknowledgement',
     },
   ]
 
@@ -47,7 +53,41 @@ function App(): JSX.Element {
           {currentLesson === 1 && <Lesson1 key={1} />}
           {currentLesson === 2 && <Lesson2 key={2} />}
           {currentLesson === 3 && <Lesson3 key={3} />}
-          {currentLesson > 3 && (
+          {currentLesson === 4 && (
+            <>
+              {!coursePassed && (
+                <AssessmentBlock
+                  passingScore={100}
+                  questions={[
+                    {
+                      id: 'q1',
+                      type: 'MultipleChoice',
+                      question:
+                        'I acknowledge that I am proficient in importing course content following the steps shown in this training.',
+                      options: ['Yes', 'No'],
+                      answer: 0,
+                    },
+                  ]}
+                >
+                  <p>
+                    Thank you for completing this training. Please reach out to
+                    the faculty development team if you have any further
+                    questions or have feedback that could improve this course.
+                  </p>
+                </AssessmentBlock>
+              )}
+              {coursePassed && (
+                <ContainerBlock width="prose" className="py-8 lg:py-16">
+                  <p>
+                    Thank you for completing this training. Please reach out to
+                    the faculty development team if you have any further
+                    questions or have feedback that could improve this course.
+                  </p>
+                </ContainerBlock>
+              )}
+            </>
+          )}
+          {currentLesson > 4 && (
             <Container width="prose">
               <p>
                 Oops. We can't seem to find the next lesson. Please let someone
