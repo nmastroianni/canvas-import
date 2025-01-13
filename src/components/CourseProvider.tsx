@@ -56,7 +56,6 @@ const CourseProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   useEffect(() => {
     const localCourseId = localStorage.getItem('courseId')
     if (!localCourseId) {
-      console.log('no localCourseId located')
       setCurrentLesson(0)
       setCurrentSection(0)
       setCourseId(courseIdentifier)
@@ -67,7 +66,6 @@ const CourseProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         localStorage.setItem('courseId', courseId)
       }
     } else if (localCourseId !== courseIdentifier) {
-      console.log('localCourseId located but does not equal ', courseIdentifier)
       setCurrentLesson(0)
       setCurrentSection(0)
       localStorage.setItem('lessonProgress', `0`)
