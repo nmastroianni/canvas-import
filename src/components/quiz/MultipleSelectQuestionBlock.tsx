@@ -47,8 +47,8 @@ const MultipleSelectQuestionBlock: FC<MultipleSelectQuestionProps> = ({
   useEffect(() => {
     if (feedbackRef.current) {
       feedbackRef.current.focus()
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
     }
-    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
   }, [correct])
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -13,6 +13,7 @@ import Lesson2 from './lessons/Lesson2'
 import Lesson3 from './lessons/Lesson3'
 import AssessmentBlock from './components/quiz/AssessmentBlock'
 import ContainerBlock from './components/ContainerBlock'
+import ReturnToOverviewButton from './components/ReturnToOverviewButton'
 
 function App(): JSX.Element {
   const { coursePassed, currentLesson, setCurrentLesson } = useCourse()
@@ -83,6 +84,7 @@ function App(): JSX.Element {
                     the faculty development team if you have any further
                     questions or have feedback that could improve this course.
                   </p>
+                  <ReturnToOverviewButton />
                 </ContainerBlock>
               )}
             </>

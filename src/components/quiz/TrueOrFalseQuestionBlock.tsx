@@ -49,8 +49,10 @@ const TrueOrFalseQuestionBlock: FC<TrueOrFalseQuestionProps> = ({
   const questionRef = useRef<HTMLSpanElement>(null)
 
   useEffect(() => {
-    if (feedbackRef.current) feedbackRef.current.focus()
-    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
+    if (feedbackRef.current) {
+      feedbackRef.current.focus()
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
+    }
   }, [correct])
 
   // Function to handle input changes

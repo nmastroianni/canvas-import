@@ -10,8 +10,13 @@ const NextLessonButton: React.FC<NextLessonButtonProps> = ({
   contingent = false,
   text = 'Go Forward',
 }) => {
-  const { currentLesson, setCurrentLesson, setCurrentSection, sectionPassed } =
-    useCourse()
+  const {
+    currentLesson,
+    setCurrentLesson,
+    setCurrentSection,
+    sectionPassed,
+    setSectionPassed,
+  } = useCourse()
 
   return (
     <div className="bg-slate-950 text-center text-2xl text-slate-200 transition-colors duration-300 ease-in hover:bg-slate-900">
@@ -22,6 +27,7 @@ const NextLessonButton: React.FC<NextLessonButtonProps> = ({
             localStorage.setItem('lessonProgress', `${currentLesson + 1}`)
             localStorage.setItem('sectionProgress', '0')
             setCurrentSection(0)
+            setSectionPassed(false)
           }}
           className="w-full p-4 lg:p-8"
         >
