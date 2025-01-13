@@ -8,6 +8,7 @@ import React, {
 } from 'react'
 
 interface CourseContextProps {
+  courseId: string | null
   currentLesson: number
   currentSection: number
   lessonLength: number
@@ -16,6 +17,7 @@ interface CourseContextProps {
   assessmentItems: number
   correctAssessmentItems: number
   WindowRef: React.RefObject<Window | null>
+  setCourseId: React.Dispatch<React.SetStateAction<string | null>>
   setCurrentLesson: React.Dispatch<React.SetStateAction<number>>
   setCurrentSection: React.Dispatch<React.SetStateAction<number>>
   setLessonLength: React.Dispatch<React.SetStateAction<number>>
@@ -26,6 +28,8 @@ interface CourseContextProps {
 }
 const CourseContext = createContext<CourseContextProps | undefined>(undefined)
 const CourseProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const courseIdentifier = '2025.1.13 Canvas Import'
+  const [courseId, setCourseId] = useState<string | null>(null)
   const [currentLesson, setCurrentLesson] = useState(0)
   const [currentSection, setCurrentSection] = useState(0)
   const [lessonLength, setLessonLength] = useState(0)
@@ -35,6 +39,7 @@ const CourseProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [correctAssessmentItems, setCorrectAssessmentItems] = useState(0)
   const WindowRef = useRef<Window | null>(null)
   useEffect(() => {
+    const localCourseId = localStorage.getItem('courseId')
     const localLesson = Number(localStorage.getItem('lessonProgress'))
     const localSection = Number(localStorage.getItem('sectionProgress'))
     if (localLesson) {
@@ -47,13 +52,31 @@ const CourseProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     } else {
       setCurrentSection(0)
     }
-  }, [])
+    if (!localCourseId) {
+      setCurrentLesson(0)
+      setCurrentSection(0)
+      setCourseId(courseIdentifier)
+      localStorage.setItem('lessonProgress', `${currentLesson}`)
+      localStorage.setItem('sectionProgress', `${currentSection}`)
+      localStorage.setItem('courseId', courseIdentifier)
+      if (courseId) {
+        localStorage.setItem('courseId', courseId)
+      }
+    } else if (localCourseId !== courseIdentifier) {
+      setCurrentLesson(0)
+      setCurrentSection(0)
+      localStorage.setItem('lessonProgress', `${currentLesson}`)
+      localStorage.setItem('sectionProgress', `${currentSection}`)
+      localStorage.setItem('courseId', courseIdentifier)
+    }
+  }, [courseId, currentLesson, currentSection])
 
   WindowRef.current = window.parent
 
   return (
     <CourseContext.Provider
       value={{
+        courseId,
         currentLesson,
         currentSection,
         lessonLength,
@@ -62,6 +85,7 @@ const CourseProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         assessmentItems,
         correctAssessmentItems,
         WindowRef,
+        setCourseId,
         setCurrentLesson,
         setCurrentSection,
         setLessonLength,
