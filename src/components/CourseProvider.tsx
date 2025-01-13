@@ -39,7 +39,6 @@ const CourseProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [correctAssessmentItems, setCorrectAssessmentItems] = useState(0)
   const WindowRef = useRef<Window | null>(null)
   useEffect(() => {
-    const localCourseId = localStorage.getItem('courseId')
     const localLesson = Number(localStorage.getItem('lessonProgress'))
     const localSection = Number(localStorage.getItem('sectionProgress'))
     if (localLesson) {
@@ -52,21 +51,27 @@ const CourseProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     } else {
       setCurrentSection(0)
     }
+  }, [])
+
+  useEffect(() => {
+    const localCourseId = localStorage.getItem('courseId')
     if (!localCourseId) {
+      console.log('no localCourseId located')
       setCurrentLesson(0)
       setCurrentSection(0)
       setCourseId(courseIdentifier)
-      localStorage.setItem('lessonProgress', `${currentLesson}`)
-      localStorage.setItem('sectionProgress', `${currentSection}`)
+      localStorage.setItem('lessonProgress', `0`)
+      localStorage.setItem('sectionProgress', `0`)
       localStorage.setItem('courseId', courseIdentifier)
       if (courseId) {
         localStorage.setItem('courseId', courseId)
       }
     } else if (localCourseId !== courseIdentifier) {
+      console.log('localCourseId located but does not equal ', courseIdentifier)
       setCurrentLesson(0)
       setCurrentSection(0)
-      localStorage.setItem('lessonProgress', `${currentLesson}`)
-      localStorage.setItem('sectionProgress', `${currentSection}`)
+      localStorage.setItem('lessonProgress', `0`)
+      localStorage.setItem('sectionProgress', `0`)
       localStorage.setItem('courseId', courseIdentifier)
     }
   }, [courseId, currentLesson, currentSection])
