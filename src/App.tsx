@@ -48,7 +48,7 @@ function App(): JSX.Element {
           </div>
         </header>
       </Headroom>
-      <main className="min-h-screen scroll-smooth bg-slate-200 text-slate-950 dark:bg-slate-900 dark:text-slate-50">
+      <main className="min-h-screen scroll-smooth bg-slate-200 px-3 text-slate-950 dark:bg-slate-900 dark:text-slate-50">
         <AnimatePresence mode="wait">
           {currentLesson === 0 && <CourseOverview key={0} />}
           {currentLesson === 1 && <Lesson1 key={1} />}
