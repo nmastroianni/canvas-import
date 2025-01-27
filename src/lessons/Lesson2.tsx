@@ -13,6 +13,7 @@ import BlockQuoteBlock from '@/components/BlockQuoteBlock'
 import WhileInView from '@/components/WhileInView'
 import LabeledImageBlock from '@/components/LabeledImageBlock'
 import CallOutBlock from '@/components/CallOutBlock'
+import MultipleSelectQuestionBlock from '@/components/quiz/MultipleSelectQuestionBlock'
 // Assets
 import importMenu from '@/assets/images/import-menu.png'
 import copyCanvasCourse from '@/assets/images/copy-canvas-course.png'
@@ -23,7 +24,7 @@ import selectContent from '@/assets/images/content-selection.png'
 import importOptions from '@/assets/images/import-options.png'
 import importButton from '@/assets/images/import-button.png'
 import selectTree from '@/assets/images/select-content-tree.png'
-import MultipleSelectQuestionBlock from '@/components/quiz/MultipleSelectQuestionBlock'
+import importQueue from '@/assets/images/import-queue.png'
 
 const Lesson2: FC = () => {
   const { currentSection } = useCourse()
@@ -248,18 +249,31 @@ const Lesson2: FC = () => {
               </div>
               <CallOutBlock>
                 <p>
-                  Importing the same course content more than once will
-                  overwrite any existing content in the course.
+                  The import button has been updated recently to say "+ Add to
+                  Import Queue"
                 </p>
               </CallOutBlock>
             </ContainerBlock>
-            <ContainerBlock width="lg" className="py-4 lg:py-8">
+            <ContainerBlock width="prose" className="py-4 lg:py-8">
+              <p>The new import button 👇</p>
+              <img
+                src={importQueue}
+                alt="updated + Add to Import Queue button"
+              />
+            </ContainerBlock>
+            <ContainerBlock width="prose" className="py-4 lg:py-8">
+              <p>The old import button 👇</p>
               <LabeledImageBlock
                 imageUrl={importButton}
                 imageAlt=""
                 hotspots={[
                   {
-                    content: <p>Click this button to begin the next step.</p>,
+                    content: (
+                      <p>
+                        Click this button to begin the next step in the import
+                        process.
+                      </p>
+                    ),
                     left: '36%',
                     top: '10%',
                     color: 'aqua',
