@@ -44,7 +44,6 @@ const MultipleChoiceQuestionBlock: FC<MultipleChoiceQuestionProps> = ({
   const questionRef = useRef<HTMLSpanElement>(null)
 
   useEffect(() => {
-    console.log('scrolling to the bottom now MultipleChoiceQuestionBlock')
     if (feedbackRef.current) {
       feedbackRef.current.focus()
       window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
