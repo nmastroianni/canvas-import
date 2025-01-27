@@ -18,7 +18,7 @@ const NextSectionButton: React.FC<NextSectionButtonProps> = ({
       {(contingent === false || sectionPassed) && (
         <WhileInView direction="up" margin="0%">
           <Button
-            className="w-96 ring-slate-700 focus:outline-none focus:ring dark:ring-slate-200"
+            className="w-full ring-slate-700 focus:outline-none focus:ring dark:ring-slate-200 lg:w-96"
             onClick={() => {
               setCurrentSection(currentSection + 1)
               localStorage.setItem('sectionProgress', `${currentSection + 1}`)
