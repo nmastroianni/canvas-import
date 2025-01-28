@@ -26,7 +26,9 @@ const ReturnToOverviewButton: FC<ReturnToOverviewButtonProps> = ({
       variant={variant}
       onClick={() => {
         setCurrentLesson(0)
+        localStorage.setItem('lessonProgress', '0')
         setCurrentSection(0)
+        localStorage.setItem('sectionProgress', '0')
       }}
       className={cn('capitalize', className)}
     >

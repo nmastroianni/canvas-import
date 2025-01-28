@@ -32,7 +32,6 @@ const AssessmentBlock: FC<AssessmentBlockProps> = ({
 }) => {
   const {
     correctAssessmentItems,
-    coursePassed,
     WindowRef,
     setAssessmentItems,
     setCoursePassed,
@@ -52,6 +51,15 @@ const AssessmentBlock: FC<AssessmentBlockProps> = ({
     ) {
       setAssessmentPassed(true)
       setCoursePassed(true)
+      localStorage.setItem('courseStatus', 'completed')
+      const scm = WindowRef.current as unknown as Window
+      if (typeof scm.SetPassed === 'function') {
+        scm?.SetPassed()
+      } else {
+        alert(
+          `Learner passed with a score of ${(correctAssessmentItems / questions.length) * 100}. This only appears while in development mode.`,
+        )
+      }
     } else if (
       (correctAssessmentItems / questions.length) * 100 < passingScore &&
       currentQuestion === questions.length
@@ -68,25 +76,6 @@ const AssessmentBlock: FC<AssessmentBlockProps> = ({
     passingScore,
     questions.length,
     setCoursePassed,
-    WindowRef,
-  ])
-
-  useEffect(() => {
-    if (coursePassed && currentQuestion === questions.length) {
-      const scm = WindowRef.current as unknown as Window
-      if (typeof scm.SetPassed === 'function') {
-        scm?.SetPassed()
-      } else {
-        alert(
-          `Learner passed with a score of ${(correctAssessmentItems / questions.length) * 100}. This only appears while in development mode.`,
-        )
-      }
-    }
-  }, [
-    correctAssessmentItems,
-    coursePassed,
-    currentQuestion,
-    questions.length,
     WindowRef,
   ])
 

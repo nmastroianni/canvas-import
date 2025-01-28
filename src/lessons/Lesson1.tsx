@@ -31,13 +31,13 @@ const Lesson1: FC = () => {
       left: '32%',
       top: '10%',
       size: 40,
-      color: 'darkmagenta',
+      color: 'firebrick',
     },
     {
       content: <p>This is a course card. Clicking it will enter the course.</p>,
       left: '31%',
       top: '62%',
-      color: 'darkmagenta',
+      color: 'firebrick',
     },
   ]
   const buttonHotspots: Array<Hotspot> = [
@@ -45,7 +45,7 @@ const Lesson1: FC = () => {
       content: <p>Convenient set of buttons available only on the homepage</p>,
       left: '75%',
       top: '9%',
-      color: 'rebeccapurple',
+      color: 'firebrick',
     },
     {
       content: <p>This is the correct import button to click. </p>,
@@ -62,7 +62,7 @@ const Lesson1: FC = () => {
       ),
       left: '75%',
       top: '35%',
-      color: 'crimson',
+      color: 'firebrick',
     },
   ]
   return (
@@ -140,7 +140,7 @@ const Lesson1: FC = () => {
                       ),
                       left: '78%',
                       top: '56%',
-                      color: 'rebeccapurple',
+                      color: 'firebrick',
                     },
                   ]}
                 />

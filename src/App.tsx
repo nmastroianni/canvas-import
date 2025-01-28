@@ -1,7 +1,7 @@
 import { AnimatePresence } from 'motion/react'
 import { useCourse } from './components/CourseProvider'
 import CourseOverview from './lessons/CourseOverview'
-import { JSX } from 'react'
+import { JSX, useEffect } from 'react'
 import Container from './components/ContainerBlock'
 import { Button } from './components/ui/button'
 import { Lesson } from './types/global'
@@ -16,7 +16,14 @@ import ContainerBlock from './components/ContainerBlock'
 import ReturnToOverviewButton from './components/ReturnToOverviewButton'
 
 function App(): JSX.Element {
-  const { coursePassed, currentLesson, setCurrentLesson } = useCourse()
+  const { coursePassed, currentLesson, setCurrentLesson, setCoursePassed } =
+    useCourse()
+  useEffect(() => {
+    const localStatus = localStorage.getItem('courseStatus')
+    if (localStatus && localStatus === 'completed') {
+      setCoursePassed(true)
+    }
+  }, [setCoursePassed])
 
   const lessons: Array<Lesson> = [
     {
@@ -93,7 +100,7 @@ function App(): JSX.Element {
             <Container width="prose">
               <p>
                 Oops. We can't seem to find the next lesson. Please let someone
-                know you've found a bug.
+                in faculty development know you've found a bug.
               </p>
               <Button
                 onClick={() => {
